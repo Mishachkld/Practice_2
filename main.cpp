@@ -8,16 +8,15 @@ void myMemcopy( int *dst, int *src, int &len) {
     char  *pointerDst, *pointerSrc;
 
     m = (SIZE * sizeof(int))/ sizeof(long long);
-    for(i = 0; i < m; i++)                         // копируем основную часть блоками по 4 или 8 байт
-        *(wdst++) = *(wsrc++);                     // (в зависимости от платформы)
+    for(i = 0; i < m; i++)                                  // копируем основную часть блоками по 4 или 8 байт
+        *(wdst++) = *(wsrc++);                              // (в зависимости от платформы)
 
     pointerDst = (char*)wdst;
     pointerSrc = (char*)wsrc;
 
     m = (SIZE * sizeof(int)) % sizeof(long long);
-    for(i = 0; i < m; i++)             // остаток копируем побайтно
+    for(i = 0; i < m; i++)                                  // остаток копируем побайтно
         *(pointerDst++) = *(pointerSrc++);
-
 }
 
 void outArray(int *array, const int &len) {
@@ -32,7 +31,7 @@ int main() {
     int len = 6;
 
     myMemcopy(newArray, tecArray, len);
-    outArray(tecArray, len);
+    outArray(newArray, len);
     return 0;
 }
 
