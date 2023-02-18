@@ -1,7 +1,7 @@
 #include <iostream>
 #define SIZE 999
 template<typename T>
-void ownMemcopy(T dst, T src, const int &len) {
+void ownMemcopy(T *dst, T *src, const int &len) {
 	int i, m;
 	int byteSizeArray = sizeof(T) * SIZE;
 	unsigned long long *wdst = (unsigned long long *)dst;   // текущая позиция в буфере назначения (т.е. на каком байте мы находимся в новом массиве)
@@ -20,20 +20,19 @@ void ownMemcopy(T dst, T src, const int &len) {
 		*(pointerDst++) = *(pointerSrc++);
 }
 template<typename T>
-void outArray(T array, const int &len) {
+void outArray(T *array, const int &len) {
 	for (int i = 0; i < len; i++)
-		std::cout << array[i] << " ";
+		std::cout <<array[i] << " ";
 	std::cout << std::endl;
 }
 
 int main() {
-	char tecArray[SIZE] = { 'f', 'g', ',','f', 'g', ',' ,'f', 'g', };
-	char newArray[SIZE] = { 'f', 'g', ',','f', 'g', ',' ,'f', '5' };
-	int len = 3;
+	int tecArray[SIZE] = { 556,456,4,465,46,5,55 };
+	int newArray[SIZE] = { 0 };
+	int len = 7;
 
 	ownMemcopy(newArray, tecArray, len);
 	outArray(newArray, len);
-	//outArray(tecArray, len);
 	system("pause");
 	return 0;
 }
