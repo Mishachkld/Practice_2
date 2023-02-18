@@ -4,7 +4,6 @@ template<typename T>
 void ownMemcopy(T dst, T src, const int &len) {
 	int i, m;
 	int byteSizeArray = sizeof(T) * SIZE;
-	std::cout << sizeof(T);
 	unsigned long long *wdst = (unsigned long long *)dst;   // текущая позиция в буфере назначения (т.е. на каком байте мы находимся в новом массиве)
 	unsigned long long *wsrc = (unsigned long long *)src;   // текущая позиция в источнике(т.е. на каком байте мы находимся в старом массиве)
 	char  *pointerDst, *pointerSrc;
@@ -20,22 +19,21 @@ void ownMemcopy(T dst, T src, const int &len) {
 	for (i = 0; i < m; i++)                                  // остаток копируем побайтно (аналогично предыдущему)
 		*(pointerDst++) = *(pointerSrc++);
 }
-
 template<typename T>
-void outArray(T array[SIZE], const int &len) {
+void outArray(T array, const int &len) {
 	for (int i = 0; i < len; i++)
 		std::cout << array[i] << " ";
 	std::cout << std::endl;
 }
 
 int main() {
-	std::string tecArray[SIZE] = { "123", "132", "154145", "2556516", "45454","6" };
-	std::string newArray[SIZE] = { "" };
-	int len = 6;
+	char tecArray[SIZE] = { 'f', 'g', ',','f', 'g', ',' ,'f', 'g', };
+	char newArray[SIZE] = { 'f', 'g', ',','f', 'g', ',' ,'f', '5' };
+	int len = 3;
 
-	//ownMemcopy(newArray, tecArray, len);
-	//outArray(newArray, len);
-	outArray(tecArray, len);
+	ownMemcopy(newArray, tecArray, len);
+	outArray(newArray, len);
+	//outArray(tecArray, len);
 	system("pause");
 	return 0;
 }
